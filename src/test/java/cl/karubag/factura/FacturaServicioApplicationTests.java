@@ -1,4 +1,4 @@
-package cl.karubag.factura;
+package cl.karubag.facturacion;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

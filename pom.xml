@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cl.karubag</groupId>
-	<artifactId>factura-servicio</artifactId>
+	<artifactId>facturacion-servicio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
