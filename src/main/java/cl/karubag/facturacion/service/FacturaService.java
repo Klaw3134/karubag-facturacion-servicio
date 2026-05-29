@@ -4,6 +4,7 @@ import cl.karubag.facturacion.dto.FacturaDTO;
 import cl.karubag.facturacion.model.EstadoFactura;
 import cl.karubag.facturacion.model.Factura;
 import cl.karubag.facturacion.repository.FacturaRepository;
+import cl.karubag.certificado.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
@@ -45,7 +46,7 @@ public class FacturaService {
 
     public FacturaDTO obtenerPorId(Long id) {
         Factura factura = facturaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada con id: " + id));
         return toDTO(factura);
     }
 
@@ -59,7 +60,7 @@ public class FacturaService {
 
     public FacturaDTO actualizar(Long id, FacturaDTO dto) {
         Factura factura = facturaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada con id: " + id));
         factura.setClienteId(dto.getClienteId());
         factura.setRetiroId(dto.getRetiroId());
         factura.setFechaEmision(dto.getFechaEmision());
@@ -73,14 +74,14 @@ public class FacturaService {
 
     public FacturaDTO pagar(Long id) {
         Factura factura = facturaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada con id: " + id));
         factura.setEstado(EstadoFactura.PAGADA);
         return toDTO(facturaRepository.save(factura));
     }
 
     public FacturaDTO anular(Long id) {
         Factura factura = facturaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Factura no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Factura no encontrada con id: " + id));
         factura.setEstado(EstadoFactura.ANULADA);
         return toDTO(facturaRepository.save(factura));
     }
