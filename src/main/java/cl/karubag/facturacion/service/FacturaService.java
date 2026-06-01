@@ -5,6 +5,7 @@ import cl.karubag.facturacion.model.EstadoFactura;
 import cl.karubag.facturacion.model.Factura;
 import cl.karubag.facturacion.repository.FacturaRepository;
 import cl.karubag.certificado.exception.ResourceNotFoundException;
+import cl.karubag.facturacion.client.RetiroClient;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
@@ -14,9 +15,12 @@ import java.util.stream.Collectors;
 public class FacturaService {
 
     private final FacturaRepository facturaRepository;
+    private final RetiroClient retiroClient;
 
-    public FacturaService(FacturaRepository facturaRepository) {
+    public FacturaService(FacturaRepository facturaRepository,
+                      RetiroClient retiroClient) {
         this.facturaRepository = facturaRepository;
+        this.retiroClient = retiroClient;
     }
 
     public List<FacturaDTO> listarTodos() {
@@ -51,6 +55,9 @@ public class FacturaService {
     }
 
     public FacturaDTO crear(FacturaDTO dto) {
+        if (dto.getRetiroId() != null && !retiroClient.existeRetiro(dto.getRetiroId())) {
+        throw new ResourceNotFoundException("Retiro no encontrado con id: " + dto.getRetiroId());
+        }
         Factura factura = toEntity(dto);
         if (factura.getFechaEmision() == null) {
             factura.setFechaEmision(LocalDate.now());
