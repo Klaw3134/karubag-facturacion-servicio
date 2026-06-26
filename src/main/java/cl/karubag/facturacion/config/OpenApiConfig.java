@@ -11,6 +11,6 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("Facturacion Servicio API")
                         .version("1.0")
-                        .description("API de gestión de facturación Karübag"));
+                        .description("API de gestion de facturacion Karübag"));
     }
 }

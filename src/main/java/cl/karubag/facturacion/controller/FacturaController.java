@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Tag(name = "Facturas", description = "Gestión de facturación Karübag")
+@Tag(name = "Facturas", description = "Gestion de facturacion Karübag")
 @RestController
 @RequestMapping("/api/facturas")
 public class FacturaController {
@@ -36,7 +36,7 @@ public class FacturaController {
         return ResponseEntity.ok(facturaService.listarTodos());
     }
 
-    @Operation(summary = "Listar por cliente", description = "Retorna facturas de un cliente específico")
+    @Operation(summary = "Listar por cliente", description = "Retorna facturas de un cliente especifico")
     @ApiResponse(responseCode = "200", description = "Lista de facturas del cliente")
     @GetMapping("/cliente/{clienteId}")
     public ResponseEntity<List<FacturaDTO>> listarPorCliente(@PathVariable Long clienteId) {
@@ -50,7 +50,7 @@ public class FacturaController {
         return ResponseEntity.ok(facturaService.listarPorEstado(estado));
     }
 
-    @Operation(summary = "Listar por periodo", description = "Retorna facturas de un periodo específico")
+    @Operation(summary = "Listar por periodo", description = "Retorna facturas de un periodo especifico")
     @ApiResponse(responseCode = "200", description = "Lista de facturas por periodo")
     @GetMapping("/periodo")
     public ResponseEntity<List<FacturaDTO>> listarPorPeriodo(
