@@ -10,7 +10,7 @@ public class RetiroClient {
 
     public RetiroClient(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
-                .baseUrl("http://localhost:8086")
+                .baseUrl("https://karubag-retiro-servicio.onrender.com")
                 .build();
     }
 
